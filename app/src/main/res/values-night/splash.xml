@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="App.Starting.Theme" parent="Theme.SplashScreen">
+        <!-- Add the background color -->
+        <item name="windowSplashScreenBackground">#1C1E21</item>
+        <!-- Add the splash logo -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <!-- After this theme which theme the App will follow, here we want out app to follow Theme.NewsApp -->
+        <item name="postSplashScreenTheme">@style/Theme.NewsApp</item>
+    </style>
+</resources>
