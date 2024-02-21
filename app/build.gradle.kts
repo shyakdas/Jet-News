@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
     kotlin("kapt")
 }
 
@@ -75,11 +76,16 @@ dependencies {
     // Compose navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
+    // Kotlin
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
+    kapt("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
+
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-compiler:2.45")
+    kapt("com.google.dagger:hilt-compiler:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-
+    // Allow references to generated code
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
