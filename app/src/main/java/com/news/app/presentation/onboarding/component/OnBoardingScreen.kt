@@ -21,12 +21,13 @@ import androidx.compose.ui.Modifier
 import com.news.app.presentation.Dimens
 import com.news.app.presentation.common.NewsButton
 import com.news.app.presentation.common.NewsTextButton
+import com.news.app.presentation.onboarding.OnBoardingEvent
 import com.news.app.presentation.onboarding.pages
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(event: (OnBoardingEvent) -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
@@ -75,8 +76,8 @@ fun OnBoardingScreen() {
                 }
                 NewsButton(text = buttonState.value[1], onClick = {
                     scope.launch {
-                        if (pagerState.currentPage == 3) {
-                            // Navigate to Home Screen
+                        if (pagerState.currentPage == 2) {
+                            event(OnBoardingEvent.SaveAppEntry)
                         } else {
                             pagerState.animateScrollToPage(pagerState.currentPage + 1)
                         }
