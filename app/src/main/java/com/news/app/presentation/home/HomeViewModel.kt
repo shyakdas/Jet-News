@@ -3,7 +3,7 @@ package com.news.app.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.news.app.domain.usecases.News.NewsUseCases
+import com.news.app.domain.usecases.news.NewsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -12,5 +12,4 @@ class HomeViewModel @Inject constructor(private val newsUseCases: NewsUseCases) 
 
     val news = newsUseCases.getNews(source = listOf("bbc-news", "abc-news", "al-jazeera-english"))
         .cachedIn(viewModelScope)
-
 }

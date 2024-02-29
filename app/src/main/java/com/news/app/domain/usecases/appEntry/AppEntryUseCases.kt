@@ -1,4 +1,4 @@
-package com.news.app.domain.usecases.AppEntry
+package com.news.app.domain.usecases.appEntry
 
 data class AppEntryUseCases(
     val readAppEntry: ReadAppEntry,
