@@ -41,7 +41,7 @@ fun BookmarkScreen(state: BookmarkState, navigateToDetails: (Article) -> Unit) {
 
         ArticleList(
             articles = state.articles,
-            onClick = {navigateToDetails(it)}
+            onClick = { navigateToDetails(it) }
         )
     }
 }

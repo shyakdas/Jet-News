@@ -37,12 +37,12 @@ class DetailsViewModel @Inject constructor(private val newsUseCases: NewsUseCase
     }
 
     private suspend fun upsertArticle(article: Article) {
-        newsUseCases.deleteArticle(article = article)
+        newsUseCases.upsertArticle(article = article)
         sideEffect = "Article Saved"
     }
 
     private suspend fun deleteArticle(article: Article) {
-        newsUseCases.upsertArticle(article = article)
+        newsUseCases.deleteArticle(article = article)
         sideEffect = "Article Delete"
     }
 }
