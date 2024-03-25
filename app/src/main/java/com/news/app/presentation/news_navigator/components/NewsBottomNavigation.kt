@@ -3,7 +3,7 @@ package com.news.app.presentation.news_navigator.components
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -31,7 +31,7 @@ fun NewsBottomNavigation(
     onItemClick: (Int) -> Unit
 ) {
     NavigationBar(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxWidth(),
         containerColor = MaterialTheme.colorScheme.background,
         tonalElevation = 10.dp
     ) {
@@ -63,9 +63,9 @@ fun NewsBottomNavigation(
 }
 
 
-@Composable
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
 fun NewsBottomNavigationPreview() {
     NewsAppTheme {
         NewsBottomNavigation(
