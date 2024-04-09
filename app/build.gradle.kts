@@ -1,117 +1,156 @@
+/**
+ * Configures the Android project with necessary plugins, dependencies, and settings.
+ */
 plugins {
+    // Android application plugin
     id("com.android.application")
+    // Kotlin Android plugin
     id("org.jetbrains.kotlin.android")
+    // Kotlin Symbol Processing (KSP) plugin
     id("com.google.devtools.ksp")
+    // Dagger Hilt Android plugin
     id("com.google.dagger.hilt.android")
+    // Kotlin parcelize plugin for generating Parcelable implementations
     id("kotlin-parcelize")
+    // Kotlin annotation processing plugin
     kotlin("kapt")
-
 }
 
 android {
+    // Define the namespace for the app
     namespace = "com.news.app"
+    // Set the compile SDK version
     compileSdk = 34
 
     defaultConfig {
+        // Configure application ID, version code, and version name
         applicationId = "com.news.app"
         minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
+        // Configure test instrumentation runner
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // Enable vector drawables
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
     buildTypes {
+        // Configure release build type
         release {
             isMinifyEnabled = false
+            // Specify ProGuard files for release build
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+
     compileOptions {
+        // Set Java source compatibility to version 17
         sourceCompatibility = JavaVersion.VERSION_17
+        // Set Java target compatibility to version 17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
+        // Set the JVM target to version 17
         jvmTarget = "17"
     }
+
+    // Enable Jetpack Compose build features
     buildFeatures {
         compose = true
     }
+
     composeOptions {
+        // Set the Kotlin compiler extension version for Jetpack Compose
         kotlinCompilerExtensionVersion = "1.5.1"
     }
+
     packaging {
         resources {
+            // Exclude specific resources from packaging
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
 
 dependencies {
-
+    // Core Kotlin extensions
     implementation("androidx.core:core-ktx:1.12.0")
+    // Lifecycle runtime Kotlin extensions
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    // Activity Compose integration
     implementation("androidx.activity:activity-compose:1.8.2")
-    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
+
+    // Jetpack Compose dependencies
+    implementation(platform("androidx.compose:compose-bom:2024.04.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+
+    // Testing dependencies
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.04.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation("org.mockito:mockito-core:5.1.1")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    testImplementation("androidx.test:core:1.5.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
 
-    // Splash Api
+    // Splash API
     implementation("androidx.core:core-splashscreen:1.0.1")
 
-    // Compose navigation
+    // Navigation Compose integration
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
-    // Kotlin
+    // Kotlin standard library
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
+    // Kotlin annotation processing plugin
     kapt("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
 
-    // Dagger Hilt
+    // Dagger Hilt dependencies
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-compiler:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    // Allow references to generated code
-    // Retrofit
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    // Retrofit for HTTP requests
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    // Coil
+    // Coil for image loading
     implementation("io.coil-kt:coil-compose:2.4.0")
 
-    // DataStore
+    // DataStore for data storage
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Compose Foundation
-    implementation("androidx.compose.foundation:foundation:1.6.1")
+    implementation("androidx.compose.foundation:foundation:1.6.5")
 
-    // Accompanist
+    // Accompanist for additional Compose utilities
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta")
 
-    // Paging 3
+    // Paging 3 for pagination
     implementation("androidx.paging:paging-runtime-ktx:3.2.1")
     implementation("androidx.paging:paging-compose:3.2.1")
 
-    // Room
+    // Room for local database
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
 
+    // Kotlin coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
 }
