@@ -20,18 +20,18 @@ data class Page(
  */
 val pages = listOf(
     Page(
-        title = "Loren Ipsum is simply dummy",
-        description = "Loren Ipsum is simply dummy text of the printing and typesetting industry",
-        image = R.drawable.onboarding1
+        title = "Business News Snapshot",
+        description = "Get quick insights into market moves, corporate updates, and economic trends with our concise business news roundup. Stay informed, stay ahead.",
+        image = R.drawable.onboardingbusiness
     ),
     Page(
-        title = "Loren Ipsum is simply dummy",
-        description = "Loren Ipsum is simply dummy text of the printing and typesetting industry",
-        image = R.drawable.onboarding2
+        title = "Breaking Tech News Waves",
+        description = "Dive into the latest in tech innovation, trends, and breakthroughs. Stay afloat with our succinct updates on gadgets, AI, cybersecurity, and more",
+        image = R.drawable.onboardingtechnology
     ),
     Page(
-        title = "Loren Ipsum is simply dummy",
-        description = "Loren Ipsum is simply dummy text of the printing and typesetting industry",
-        image = R.drawable.onboarding3
+        title = "Catch the Entertainment Buzz",
+        description = "Stay tuned to the latest in entertainment, from movie releases to celebrity gossip. Get your dose of pop culture updates in a flash",
+        image = R.drawable.onboardingentertainment
     )
 )

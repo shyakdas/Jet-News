@@ -17,6 +17,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.news.app.R
 import com.news.app.presentation.Dimens
 import com.news.app.presentation.onboarding.Page
@@ -47,7 +48,7 @@ fun OnBoardingPage(modifier: Modifier = Modifier, page: Page) {
         Text(
             modifier = Modifier.padding(horizontal = Dimens.MediumPadding2),
             text = page.title,
-            style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold),
+            style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold, fontSize = 20.sp),
             color = colorResource(id = R.color.display_small)
         )
         // Display the description text with specified style and color
