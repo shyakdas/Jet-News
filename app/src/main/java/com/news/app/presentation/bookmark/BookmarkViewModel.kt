@@ -30,7 +30,7 @@ class BookmarkViewModel @Inject constructor(private val newsUseCases: NewsUseCas
     /**
      * Retrieves bookmarked articles using the NewsUseCases and updates the state.
      */
-    private fun getArticles() {
+    fun getArticles() {
         newsUseCases.selectArticles().onEach {
             _state.value = _state.value.copy(articles = it.asReversed())
         }.launchIn(viewModelScope)

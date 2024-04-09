@@ -108,6 +108,7 @@ dependencies {
     testImplementation("androidx.test:core:1.5.0")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+    testImplementation("app.cash.turbine:turbine:0.5.2")
 
     // Splash API
     implementation("androidx.core:core-splashscreen:1.0.1")
@@ -116,12 +117,12 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
     // Kotlin standard library
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
     // Kotlin annotation processing plugin
     kapt("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
 
     // Dagger Hilt dependencies
-    implementation("com.google.dagger:hilt-android:2.48")
+    implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-compiler:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
