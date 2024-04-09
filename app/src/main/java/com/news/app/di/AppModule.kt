@@ -29,15 +29,24 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+/**
+ * Dagger Hilt module for providing dependencies for the application.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    /**
+     * Provides a singleton instance of LocalUserManager.
+     */
     @Provides
     @Singleton
     fun provideLocalUserManager(application: Application): LocalUserManager =
         LocalUserManagerImpl(application)
 
+    /**
+     * Provides a singleton instance of AppEntryUseCases.
+     */
     @Provides
     @Singleton
     fun provideAppEntryUseCases(localUserManager: LocalUserManager) = AppEntryUseCases(
@@ -45,6 +54,9 @@ object AppModule {
         saveAppEntry = SaveAppEntry(localUserManager)
     )
 
+    /**
+     * Provides a singleton instance of NewsApi.
+     */
     @Provides
     @Singleton
     fun provideNewsApi(): NewsApi {
@@ -52,11 +64,17 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create()).build().create(NewsApi::class.java)
     }
 
+    /**
+     * Provides a singleton instance of NewsRepository.
+     */
     @Provides
     @Singleton
     fun provideNewsRepository(newsApi: NewsApi, newsDao: NewsDao): NewsRepository =
         NewsRepositoryImpl(newsApi, newsDao = newsDao)
 
+    /**
+     * Provides a singleton instance of NewsUseCases.
+     */
     @Provides
     @Singleton
     fun provideNewsUseCases(newsRepository: NewsRepository, newsDao: NewsDao): NewsUseCases {
@@ -70,6 +88,9 @@ object AppModule {
         )
     }
 
+    /**
+     * Provides a singleton instance of NewsDatabase.
+     */
     @Provides
     @Singleton
     fun provideNewsDatabase(application: Application): NewsDatabase {
@@ -80,6 +101,9 @@ object AppModule {
         ).addTypeConverter(NewsTypeConverter()).fallbackToDestructiveMigration().build()
     }
 
+    /**
+     * Provides a singleton instance of NewsDao.
+     */
     @Provides
     @Singleton
     fun provideNewsDao(newsDatabase: NewsDatabase): NewsDao = newsDatabase.newsDao
