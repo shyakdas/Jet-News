@@ -1,7 +1,5 @@
 # Jet News
 
-As an AI language model, I can provide you with a basic outline for a news application based on the resources you provided. However, I cannot directly implement the application for you. Below is a simple structure you can follow to create your news application using the resources from the YouTube playlist and GitHub project:
-
 ### 1. Project Setup:
 - Clone the GitHub repository you provided (`https://github.com/shyakdas/Jet-News`) to your local machine.
 - Follow the setup instructions provided in the repository's README file to set up the project environment.
