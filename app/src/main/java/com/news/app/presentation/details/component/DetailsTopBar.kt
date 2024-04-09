@@ -18,7 +18,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.news.app.R
 import com.news.app.ui.theme.NewsAppTheme
 
-
+/**
+ * Composable function for displaying the top app bar in the details screen.
+ * @param onBrowsingClick Callback function for browsing action click.
+ * @param onShareClick Callback function for share action click.
+ * @param onBookmarkClick Callback function for bookmark action click.
+ * @param onBackClick Callback function for back navigation click.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsTopBar(
@@ -65,7 +71,9 @@ fun DetailsTopBar(
         })
 }
 
-
+/**
+ * Preview function for the DetailsTopBar composable.
+ */
 @Composable
 @Preview(showBackground = true)
 fun DetailsTopBarPreview() {

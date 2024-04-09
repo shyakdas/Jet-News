@@ -13,7 +13,12 @@ import androidx.paging.compose.LazyPagingItems
 import com.news.app.domain.model.Article
 import com.news.app.presentation.Dimens
 
-
+/**
+ * Composable function for displaying a list of articles.
+ * @param modifier The modifier for styling and positioning the article list.
+ * @param articles The list of articles to display.
+ * @param onClick Callback function to handle click events on articles.
+ */
 @Composable
 fun ArticleList(
     modifier: Modifier = Modifier,
@@ -32,6 +37,12 @@ fun ArticleList(
     }
 }
 
+/**
+ * Composable function for displaying a list of articles using paging.
+ * @param modifier The modifier for styling and positioning the article list.
+ * @param articles The lazy loading list of articles to display.
+ * @param onClick Callback function to handle click events on articles.
+ */
 @Composable
 fun ArticleList(
     modifier: Modifier = Modifier,
@@ -54,6 +65,11 @@ fun ArticleList(
     }
 }
 
+/**
+ * Function to handle the paging result and display appropriate UI.
+ * @param articles The lazy loading list of articles.
+ * @return Boolean value indicating whether to display the list or not.
+ */
 @Composable
 fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
     val loadState = articles.loadState
@@ -81,6 +97,9 @@ fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
     }
 }
 
+/**
+ * Composable function for displaying a shimmer effect while content is loading.
+ */
 @Composable
 private fun ShimmerEffect() {
     Column(verticalArrangement = Arrangement.spacedBy(Dimens.MediumPadding1)) {

@@ -15,6 +15,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+/**
+ * Dark color scheme used for the dark theme.
+ */
 private val DarkColorScheme = darkColorScheme(
     primary = Blue,
     background = Black,
@@ -22,6 +25,9 @@ private val DarkColorScheme = darkColorScheme(
     surface = LightBlack
 )
 
+/**
+ * Light color scheme used for the light theme.
+ */
 private val LightColorScheme = lightColorScheme(
     primary = Blue,
     background = Color.White,
@@ -29,6 +35,13 @@ private val LightColorScheme = lightColorScheme(
     surface = Color.White
 )
 
+/**
+ * Composable function to set up the theme for the NewsApp.
+ *
+ * @param darkTheme Whether to use dark theme or light theme based on system settings.
+ * @param dynamicColor Whether to use dynamic color scheme (available on Android 12+).
+ * @param content The content of the application.
+ */
 @Composable
 fun NewsAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

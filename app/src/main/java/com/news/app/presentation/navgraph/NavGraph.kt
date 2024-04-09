@@ -10,6 +10,12 @@ import com.news.app.presentation.news_navigator.NewsNavigator
 import com.news.app.presentation.onboarding.OnBoardingViewModel
 import com.news.app.presentation.onboarding.component.OnBoardingScreen
 
+/**
+ * Composable function defining the navigation graph of the application.
+ * Manages navigation between different screens using Jetpack Navigation.
+ *
+ * @param startDestination The starting destination of the navigation graph.
+ */
 @Composable
 fun NavGraph(
     startDestination: String
@@ -17,6 +23,7 @@ fun NavGraph(
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = startDestination) {
+        // Navigation for app start, such as onboarding screens
         navigation(
             route = Route.AppStartNavigation.route,
             startDestination = Route.OnBoardingScreen.route
@@ -26,7 +33,7 @@ fun NavGraph(
                 OnBoardingScreen(event = viewModel::onEvent)
             }
         }
-
+        // Navigation for news-related screens
         navigation(
             route = Route.NewsNavigation.route,
             startDestination = Route.NewsNavigatorScreen.route

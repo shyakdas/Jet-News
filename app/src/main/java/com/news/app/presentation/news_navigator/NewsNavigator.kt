@@ -34,9 +34,15 @@ import com.news.app.presentation.news_navigator.components.NewsBottomNavigation
 import com.news.app.presentation.search.SearchScreen
 import com.news.app.presentation.search.SearchViewModel
 
+/**
+ * Composable function for the main navigation flow of the news application.
+ * Handles the bottom navigation, switching between different screens.
+ *
+ * @param startDestination The starting destination of the navigation flow.
+ */
 @Composable
 fun NewsNavigator() {
-
+    // Define the bottom navigation items
     val bottomNavigationItems = remember {
         listOf(
             BottomNavigationItem(icon = R.drawable.ic_home, text = "Home"),
@@ -44,9 +50,11 @@ fun NewsNavigator() {
             BottomNavigationItem(icon = R.drawable.ic_bookmark, text = "Bookmark"),
         )
     }
-
+    // Initialize NavController to manage navigation
     val navController = rememberNavController()
+    // Retrieve the current back stack state
     val backStackState = navController.currentBackStackEntryAsState().value
+    // Determine the selected item index based on the current destination route
     var selectedItem by rememberSaveable {
         mutableStateOf(0)
     }
@@ -57,14 +65,14 @@ fun NewsNavigator() {
         else -> 0
     }
 
-    //Hide the bottom navigation when the user is in the details screen
+    // Determine if the bottom navigation bar should be visible
     val isBottomBarVisible = remember(key1 = backStackState) {
         backStackState?.destination?.route == Route.HomeScreen.route ||
                 backStackState?.destination?.route == Route.SearchScreen.route ||
                 backStackState?.destination?.route == Route.BookmarkScreen.route
     }
 
-
+    // Scaffold with bottom navigation
     Scaffold(modifier = Modifier.fillMaxSize(), bottomBar = {
         if (isBottomBarVisible) {
             NewsBottomNavigation(
@@ -91,15 +99,21 @@ fun NewsNavigator() {
             )
         }
     }) {
+        // Calculate bottom padding for the content area
         val bottomPadding = it.calculateBottomPadding()
+        // Navigation graph setup
         NavHost(
             navController = navController,
             startDestination = Route.HomeScreen.route,
             modifier = Modifier.padding(bottom = bottomPadding)
         ) {
+            // Define composable destinations
             composable(route = Route.HomeScreen.route) { backStackEntry ->
+                // Retrieve ViewModel for the HomeScreen
                 val viewModel: HomeViewModel = hiltViewModel()
+                // Collect news articles
                 val articles = viewModel.news.collectAsLazyPagingItems()
+                // Render HomeScreen
                 HomeScreen(
                     articles = articles,
                     navigateToSearch = {
@@ -117,9 +131,13 @@ fun NewsNavigator() {
                 )
             }
             composable(route = Route.SearchScreen.route) {
+                // Retrieve ViewModel for the SearchScreen
                 val viewModel: SearchViewModel = hiltViewModel()
+                // Retrieve state
                 val state = viewModel.state.value
+                // Save state when back button is pressed
                 OnBackClickStateSaver(navController = navController)
+                // Render SearchScreen
                 SearchScreen(
                     state = state,
                     event = viewModel::onEvent,
@@ -132,13 +150,18 @@ fun NewsNavigator() {
                 )
             }
             composable(route = Route.DetailsScreen.route) {
+                // Retrieve ViewModel for the DetailsScreen
                 val viewModel: DetailsViewModel = hiltViewModel()
+                // Show side effect if available
                 if (viewModel.sideEffect != null) {
-                    Toast.makeText(LocalContext.current, viewModel.sideEffect, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(LocalContext.current, viewModel.sideEffect, Toast.LENGTH_SHORT)
+                        .show()
                     viewModel.onEvent(DetailsEvent.RemoveSideEvent)
                 }
+                // Retrieve article from saved state handle
                 navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
                     ?.let { article ->
+                        // Render DetailsScreen
                         DetailsScreen(
                             article = article,
                             event = viewModel::onEvent,
@@ -148,9 +171,13 @@ fun NewsNavigator() {
 
             }
             composable(route = Route.BookmarkScreen.route) {
+                // Retrieve ViewModel for the BookmarkScreen
                 val viewModel: BookmarkViewModel = hiltViewModel()
+                // Retrieve state
                 val state = viewModel.state.value
+                // Save state when back button is pressed
                 OnBackClickStateSaver(navController = navController)
+                // Render BookmarkScreen
                 BookmarkScreen(
                     state = state,
                     navigateToDetails = { article ->
@@ -165,9 +192,16 @@ fun NewsNavigator() {
     }
 }
 
+/**
+ * Composable function to save the navigation state when the back button is pressed.
+ * If the back button is pressed, it navigates to the HomeScreen.
+ *
+ * @param navController NavController instance for managing navigation.
+ */
 @Composable
 fun OnBackClickStateSaver(navController: NavController) {
     BackHandler(true) {
+        // Navigate to the HomeScreen when the back button is pressed
         navigateToTab(
             navController = navController,
             route = Route.HomeScreen.route
@@ -175,20 +209,38 @@ fun OnBackClickStateSaver(navController: NavController) {
     }
 }
 
+/**
+ * Navigates to the specified destination route using the NavController.
+ * This function also ensures the navigation stack is properly managed.
+ *
+ * @param navController NavController instance for managing navigation.
+ * @param route Destination route to navigate to.
+ */
 private fun navigateToTab(navController: NavController, route: String) {
+    // Pop up to the start destination route
     navController.navigate(route) {
         navController.graph.startDestinationRoute?.let { screen_route ->
             popUpTo(screen_route) {
                 saveState = true
             }
         }
+        // Ensure a single instance of the destination is at the top of the stack
         launchSingleTop = true
+        // Restore the state when navigating
         restoreState = true
     }
 }
 
+/**
+ * Navigates to the DetailsScreen with the specified article using the NavController.
+ *
+ * @param navController NavController instance for managing navigation.
+ * @param article The article to be passed to the DetailsScreen.
+ */
 private fun navigateToDetails(navController: NavController, article: Article) {
+    // Set the article as a parameter using SavedStateHandle
     navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
+    // Navigate to the DetailsScreen route
     navController.navigate(
         route = Route.DetailsScreen.route
     )

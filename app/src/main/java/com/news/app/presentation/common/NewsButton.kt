@@ -14,6 +14,11 @@ import androidx.compose.ui.unit.dp
 import com.news.app.ui.theme.NewsAppTheme
 import com.news.app.ui.theme.WhiteGray
 
+/**
+ * Composable function for displaying a styled button.
+ * @param text The text to display on the button.
+ * @param onClick The callback function to execute when the button is clicked.
+ */
 @Composable
 fun NewsButton(text: String, onClick: () -> Unit) {
     Button(
@@ -31,6 +36,11 @@ fun NewsButton(text: String, onClick: () -> Unit) {
     }
 }
 
+/**
+ * Composable function for displaying a styled text button.
+ * @param text The text to display on the button.
+ * @param onClick The callback function to execute when the button is clicked.
+ */
 @Composable
 fun NewsTextButton(text: String, onClick: () -> Unit) {
     TextButton(onClick = onClick) {
@@ -42,6 +52,9 @@ fun NewsTextButton(text: String, onClick: () -> Unit) {
     }
 }
 
+/**
+ * Preview function for the NewsButton composable.
+ */
 @Composable
 @Preview(showBackground = true)
 fun NewsButtonPreview() {
@@ -51,6 +64,9 @@ fun NewsButtonPreview() {
     }
 }
 
+/**
+ * Preview function for the NewsTextButton composable.
+ */
 @Composable
 @Preview(showBackground = true)
 fun NewsTextButtonPreview() {

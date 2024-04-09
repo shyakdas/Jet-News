@@ -25,14 +25,19 @@ import com.news.app.presentation.onboarding.OnBoardingEvent
 import com.news.app.presentation.onboarding.pages
 import kotlinx.coroutines.launch
 
+/**
+ * Composable function for rendering the onboarding screen.
+ * @param event Lambda function to handle events triggered from the onboarding screen.
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnBoardingScreen(event: (OnBoardingEvent) -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
+        // Remember the state of the pager
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
         }
-
+        // Derive button state based on current page
         val buttonState = remember {
             derivedStateOf {
                 when (pagerState.currentPage) {
@@ -44,12 +49,12 @@ fun OnBoardingScreen(event: (OnBoardingEvent) -> Unit) {
             }
         }
 
+        // Horizontal pager to display onboarding pages
         HorizontalPager(state = pagerState) { index ->
             OnBoardingPage(page = pages[index])
         }
-
         Spacer(modifier = Modifier.weight(1f))
-
+        // Row containing page indicator and navigation buttons
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -58,15 +63,16 @@ fun OnBoardingScreen(event: (OnBoardingEvent) -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            // Page indicator
             PageIndicator(
                 modifier = Modifier.width(Dimens.PageIndicatorWidth),
                 pageSize = pages.size,
                 selectedPage = pagerState.currentPage
             )
-
+            // Navigation buttons
             Row(verticalAlignment = Alignment.CenterVertically) {
                 val scope = rememberCoroutineScope()
-
+                // Back button
                 if (buttonState.value[0].isNotEmpty()) {
                     NewsTextButton(text = buttonState.value[0], onClick = {
                         scope.launch {
@@ -74,6 +80,7 @@ fun OnBoardingScreen(event: (OnBoardingEvent) -> Unit) {
                         }
                     })
                 }
+                // Next/Get Started button
                 NewsButton(text = buttonState.value[1], onClick = {
                     scope.launch {
                         if (pagerState.currentPage == 2) {
@@ -85,6 +92,7 @@ fun OnBoardingScreen(event: (OnBoardingEvent) -> Unit) {
                 })
             }
         }
+        // Spacer at the bottom
         Spacer(modifier = Modifier.weight(0.5f))
     }
 }

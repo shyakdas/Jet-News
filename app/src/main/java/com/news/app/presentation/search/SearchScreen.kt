@@ -13,8 +13,13 @@ import com.news.app.domain.model.Article
 import com.news.app.presentation.Dimens
 import com.news.app.presentation.common.ArticleList
 import com.news.app.presentation.common.SearchBar
-import com.news.app.presentation.navgraph.Route
 
+/**
+ * Composable function representing the screen for searching news.
+ * @param state The current state of the search screen.
+ * @param event The event handler for search-related events.
+ * @param navigateToDetails Function to navigate to the details screen for a specific article.
+ */
 @Composable
 fun SearchScreen(state: SearchState, event: (SearchEvent) -> Unit, navigateToDetails: (Article) -> Unit) {
     Column(

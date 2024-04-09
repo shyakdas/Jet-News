@@ -29,6 +29,13 @@ import com.news.app.presentation.common.ArticleList
 import com.news.app.presentation.common.SearchBar
 import com.news.app.presentation.navgraph.Route
 
+/**
+ * Composable function to display the home screen.
+ *
+ * @param articles LazyPagingItems representing the list of articles to display.
+ * @param navigateToSearch Callback function to navigate to the search screen.
+ * @param navigateToDetails Callback function to navigate to the details screen for a specific article.
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
@@ -36,6 +43,7 @@ fun HomeScreen(
     navigateToSearch: () -> Unit,
     navigateToDetails: (Article) -> Unit
 ) {
+    // Extract titles of the first 10 articles for display
     val titles by remember {
         derivedStateOf {
             if (articles.itemCount > 10) {
@@ -53,6 +61,7 @@ fun HomeScreen(
             .padding(top = Dimens.MediumPadding1)
             .statusBarsPadding()
     ) {
+        // Display app logo
         Image(
             painter = painterResource(id = R.drawable.ic_logo),
             contentDescription = null,
@@ -72,6 +81,7 @@ fun HomeScreen(
             },
             onSearch = {})
         Spacer(modifier = Modifier.height(Dimens.MediumPadding1))
+        // Display titles of the first 10 articles
         Text(
             text = titles,
             modifier = Modifier
@@ -82,6 +92,7 @@ fun HomeScreen(
             color = colorResource(id = R.color.placeholder)
         )
         Spacer(modifier = Modifier.height(Dimens.MediumPadding1))
+        // Display list of articles
         ArticleList(
             modifier = Modifier.padding(horizontal = Dimens.MediumPadding1),
             articles = articles,

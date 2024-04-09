@@ -1,5 +1,11 @@
 package com.news.app.presentation.navgraph
 
+/**
+ * Sealed class defining the routes for navigation within the application.
+ * Each route corresponds to a specific screen in the app.
+ *
+ * @param route The route string associated with the screen.
+ */
 sealed class Route(val route: String) {
 
     object OnBoardingScreen : Route(route = "onBoardingScreen")

@@ -16,6 +16,15 @@ import com.news.app.presentation.Dimens.IndicatorSize
 import com.news.app.ui.theme.BlueGray
 import com.news.app.ui.theme.NewsAppTheme
 
+/**
+ * Composable function for rendering a page indicator.
+ *
+ * @param modifier Modifier to apply to the page indicator.
+ * @param pageSize Total number of pages.
+ * @param selectedPage Index of the currently selected page.
+ * @param selectedPageColor Color for the selected page indicator.
+ * @param unSelectedColor Color for the unselected page indicators.
+ */
 @Composable
 fun PageIndicator(
     modifier: Modifier = Modifier,
@@ -24,8 +33,11 @@ fun PageIndicator(
     selectedPageColor: Color = MaterialTheme.colorScheme.primary,
     unSelectedColor: Color = BlueGray
 ) {
+    // Row to contain individual page indicators
     Row(modifier = modifier, horizontalArrangement = Arrangement.SpaceBetween) {
+        // Repeat for each page
         repeat(pageSize) { page ->
+            // Box representing each page indicator
             Box(
                 modifier = Modifier
                     .size(IndicatorSize)
@@ -36,10 +48,16 @@ fun PageIndicator(
     }
 }
 
+/**
+ * Composable function for previewing the PageIndicator.
+ * It displays a sample PageIndicator with a specific page size and selected page index.
+ */
 @Composable
 @Preview(showBackground = true)
 fun PageIndicatorPreview() {
+    // Preview the PageIndicator within the NewsAppTheme
     NewsAppTheme {
+        // Display a PageIndicator with a page size of 3 and the second page selected
         PageIndicator(pageSize = 3, selectedPage = 1)
     }
 }

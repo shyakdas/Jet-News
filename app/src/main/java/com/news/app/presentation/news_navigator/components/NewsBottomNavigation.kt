@@ -24,6 +24,14 @@ import com.news.app.presentation.Dimens
 import com.news.app.presentation.news_navigator.BottomNavigationItem
 import com.news.app.ui.theme.NewsAppTheme
 
+/**
+ * Composable function representing the bottom navigation bar for the news application.
+ * It displays a list of bottom navigation items.
+ *
+ * @param items The list of [BottomNavigationItem] objects to be displayed in the bottom navigation.
+ * @param selected The index of the currently selected item.
+ * @param onItemClick Callback function to be invoked when an item is clicked.
+ */
 @Composable
 fun NewsBottomNavigation(
     items: List<BottomNavigationItem>,
@@ -62,7 +70,9 @@ fun NewsBottomNavigation(
     }
 }
 
-
+/**
+ * Preview function for the NewsBottomNavigation composable in light and dark themes.
+ */
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable

@@ -28,7 +28,12 @@ import com.news.app.presentation.Dimens
 import com.news.app.presentation.details.component.DetailsTopBar
 import com.news.app.ui.theme.NewsAppTheme
 
-
+/**
+ * Composable function representing the details screen.
+ * @param article The article to display details of.
+ * @param event The callback to handle details screen events.
+ * @param navigateUp The callback to navigate up from the details screen.
+ */
 @Composable
 fun DetailsScreen(
     article: Article,
@@ -101,6 +106,9 @@ fun DetailsScreen(
     }
 }
 
+/**
+ * Preview function for the DetailsScreen composable.
+ */
 @Composable
 @Preview(showBackground = true)
 fun DetailsScreenPreview() {

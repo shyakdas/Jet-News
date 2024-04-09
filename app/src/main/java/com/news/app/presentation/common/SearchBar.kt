@@ -31,6 +31,15 @@ import com.news.app.R
 import com.news.app.presentation.Dimens
 import com.news.app.ui.theme.NewsAppTheme
 
+/**
+ * Composable function for displaying a search bar.
+ * @param modifier The modifier for styling the search bar.
+ * @param text The current text value of the search bar.
+ * @param readOnly Boolean value indicating whether the search bar is read-only.
+ * @param onClick Callback function triggered when the search bar is clicked.
+ * @param onValueChange Callback function triggered when the text value of the search bar changes.
+ * @param onSearch Callback function triggered when the search action is performed.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(
@@ -95,6 +104,9 @@ fun SearchBar(
     }
 }
 
+/**
+ * Modifier function for adding a border to the search bar.
+ */
 fun Modifier.searchBarBoarder() = composed {
     if (!isSystemInDarkTheme()) {
         border(width = 1.dp, color = Color.Black, shape = MaterialTheme.shapes.medium)
@@ -103,6 +115,9 @@ fun Modifier.searchBarBoarder() = composed {
     }
 }
 
+/**
+ * Preview function for the SearchBar composable.
+ */
 @Composable
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)

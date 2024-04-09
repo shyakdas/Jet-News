@@ -28,6 +28,11 @@ import com.news.app.R
 import com.news.app.presentation.Dimens
 import com.news.app.ui.theme.NewsAppTheme
 
+/**
+ * Modifier function for adding a shimmer effect to the composable.
+ * The shimmer effect simulates a loading animation by gradually changing the opacity of the background color.
+ * @return The modified modifier with the shimmer effect.
+ */
 fun Modifier.shimmerEffect() = this.then(
     composed {
         val transition = rememberInfiniteTransition(label = "")
@@ -41,6 +46,10 @@ fun Modifier.shimmerEffect() = this.then(
     }
 )
 
+/**
+ * Composable function for displaying a shimmer effect on an article card.
+ * @param modifier The modifier for styling the shimmer effect.
+ */
 @Composable
 fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
     Row(modifier = modifier) {
@@ -77,7 +86,9 @@ fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
     }
 }
 
-
+/**
+ * Preview function for the ArticleCardShimmerEffect composable.
+ */
 @Composable
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)

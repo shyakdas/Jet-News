@@ -10,16 +10,26 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+/**
+ * ViewModel class for managing the state of the Bookmark screen.
+ * @param newsUseCases The use cases related to news operations.
+ */
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(private val newsUseCases: NewsUseCases) : ViewModel() {
 
     private val _state = mutableStateOf(BookmarkState())
     val state: State<BookmarkState> = _state
 
+    /**
+     * Initializes the ViewModel by retrieving bookmarked articles.
+     */
     init {
         getArticles()
     }
 
+    /**
+     * Retrieves bookmarked articles using the NewsUseCases and updates the state.
+     */
     private fun getArticles() {
         newsUseCases.selectArticles().onEach {
             _state.value = _state.value.copy(articles = it.asReversed())

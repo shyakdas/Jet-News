@@ -31,6 +31,12 @@ import com.news.app.domain.model.Article
 import com.news.app.domain.model.Source
 import com.news.app.presentation.Dimens
 
+/**
+ * Composable function for displaying an article card.
+ * @param modifier The modifier for styling and positioning the article card.
+ * @param article The article to display.
+ * @param onClick Callback function to handle click events on the article card.
+ */
 @Composable
 fun ArticleCard(modifier: Modifier = Modifier, article: Article, onClick: () -> Unit) {
 
@@ -84,6 +90,9 @@ fun ArticleCard(modifier: Modifier = Modifier, article: Article, onClick: () -> 
     }
 }
 
+/**
+ * Preview function for the ArticleCard composable.
+ */
 @Composable
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)

@@ -31,6 +31,10 @@ import com.news.app.R
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 
+/**
+ * Composable function for displaying an empty screen when no content is available or when there's an error.
+ * @param error The load state error, if any.
+ */
 @Composable
 fun EmptyScreen(error: LoadState.Error? = null) {
 
@@ -63,6 +67,12 @@ fun EmptyScreen(error: LoadState.Error? = null) {
     EmptyContent(alphaMin = alphaAnimation, message = message, iconId = icon)
 }
 
+/**
+ * Composable function for displaying the content of the empty screen.
+ * @param alphaMin The minimum alpha value for the content.
+ * @param message The message to display.
+ * @param iconId The resource ID of the icon to display.
+ */
 @Composable
 fun EmptyContent(alphaMin: Float, message: String, iconId: Int) {
     Column(
@@ -89,6 +99,11 @@ fun EmptyContent(alphaMin: Float, message: String, iconId: Int) {
     }
 }
 
+/**
+ * Function to parse the error message based on the given load state error.
+ * @param error The load state error.
+ * @return The parsed error message.
+ */
 fun parseErrorMessage(error: LoadState.Error?): String {
     return when (error?.error) {
         is SocketTimeoutException -> {
@@ -105,6 +120,9 @@ fun parseErrorMessage(error: LoadState.Error?): String {
     }
 }
 
+/**
+ * Composable function for previewing the empty screen content.
+ */
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable

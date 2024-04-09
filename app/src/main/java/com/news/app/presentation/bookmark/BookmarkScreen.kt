@@ -17,6 +17,11 @@ import com.news.app.domain.model.Article
 import com.news.app.presentation.Dimens
 import com.news.app.presentation.common.ArticleList
 
+/**
+ * Composable function for displaying the Bookmark screen.
+ * @param state The state of the Bookmark screen.
+ * @param navigateToDetails Callback function to navigate to the details screen of an article.
+ */
 @Composable
 fun BookmarkScreen(state: BookmarkState, navigateToDetails: (Article) -> Unit) {
     Column(
