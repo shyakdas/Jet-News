@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.dp
  */
 object Dimens {
     // Medium padding value 1
-    val MediumPadding1 = 24.dp
+    val MediumPadding1 = 12.dp
     // Medium padding value 2
     val MediumPadding2 = 30.dp
     // Size of the page indicator

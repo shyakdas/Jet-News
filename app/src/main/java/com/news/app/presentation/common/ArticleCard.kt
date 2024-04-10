@@ -24,12 +24,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.news.app.R
 import com.news.app.domain.model.Article
 import com.news.app.domain.model.Source
 import com.news.app.presentation.Dimens
+import com.news.app.util.NewsUtils
 
 /**
  * Composable function for displaying an article card.
@@ -51,7 +53,7 @@ fun ArticleCard(modifier: Modifier = Modifier, article: Article, onClick: () -> 
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
-
+        Spacer(modifier = Modifier.width(10.dp))
         Column(
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
@@ -82,7 +84,7 @@ fun ArticleCard(modifier: Modifier = Modifier, article: Article, onClick: () -> 
                 )
                 Spacer(modifier = Modifier.width(Dimens.ExtraSmallPadding2))
                 Text(
-                    text = article.publishedAt,
+                    text = NewsUtils.getTimeAgoString(timeString = article.publishedAt),
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold)
                 )
             }
@@ -103,7 +105,7 @@ fun ArticleCardPreview() {
             content = "For eight years, Craig Wright has claimed to be the elusive Bitcoin creator Satoshi Nakamoto. On Monday, in the swelling heat of a UK courtroom, a trial began that will finally settle the question.\\r\\n… [+3163 chars]",
             description = "A UK High Court will settle a long-running debate over whether Craig Wright really is Satoshi Nakamoto, inventor of Bitcoin. Monday’s opening arguments laid the groundwork for both sides.",
             publishedAt = "2024-02-05T21:07:04Z",
-            source = Source(id = "wired", name = "Wired"),
+            source = Source(id = "wired", name = "Al Jeera English"),
             title = "The Trial Over Bitcoin’s True Creator Is in Session",
             url = "https://www.wired.com/story/craig-wright-bitcoin-satoshi-nakamoto-trial/",
             urlToImage = "https://media.wired.com/photos/65bd7e2524c06ba3ede91a33/191:100/w_1280,c_limit/Craig-Wright-Trial-Day-1-Business-Yellow-1494808061.jpg"
