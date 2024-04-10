@@ -25,7 +25,7 @@ fun ArticleList(
     articles: List<Article>,
     onClick: (Article) -> Unit
 ) {
-    if (articles.isEmpty()){
+    if (articles.isEmpty()) {
         EmptyScreen()
     }
     LazyColumn(
@@ -90,6 +90,11 @@ fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
         }
 
         error != null -> {
+            EmptyScreen()
+            false
+        }
+
+        articles.itemCount == 0 -> {
             EmptyScreen()
             false
         }
