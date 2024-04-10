@@ -27,7 +27,6 @@ import com.news.app.domain.model.Article
 import com.news.app.presentation.Dimens
 import com.news.app.presentation.common.ArticleList
 import com.news.app.presentation.common.SearchBar
-import com.news.app.presentation.navgraph.Route
 
 /**
  * Composable function to display the home screen.
@@ -66,8 +65,6 @@ fun HomeScreen(
             painter = painterResource(id = R.drawable.ic_logo),
             contentDescription = null,
             modifier = Modifier
-                .width(150.dp)
-                .height(30.dp)
                 .padding(horizontal = Dimens.MediumPadding1)
         )
         Spacer(modifier = Modifier.height(Dimens.MediumPadding1))
