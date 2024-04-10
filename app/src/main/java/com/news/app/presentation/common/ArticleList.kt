@@ -90,7 +90,7 @@ fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
         }
 
         error != null -> {
-            EmptyScreen()
+            EmptyScreen(error = error)
             false
         }
 
